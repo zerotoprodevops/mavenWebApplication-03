@@ -19,6 +19,13 @@ RUN mvn clean package -DskipTests
 
 FROM tomcat:11-jre21-temurin-noble
 
+#apply ububbtu security updates
+
+RUN apt-get update && \	
+    apt-get upgrade -y && \
+    rm -rf /var/lib/apt/lists/*
+ 
+
 WORKDIR /usr/local/tomcat
 
 #create non-root user
